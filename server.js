@@ -7,15 +7,15 @@ const server = http.createServer((req, res) => {
   }
 
   if (req.method === 'POST' && req.url === '/archivo') {
-    let bytesTotales = 0;
+    let totalBytes = 0;
 
     req.on('data', (chunk) => {
-      bytesTotales += chunk.length;
+      totalBytes += chunk.length;
     });
 
     req.on('end', () => {
       res.writeHead(200, { 'Content-type': 'text/plain; charset=utf-8' })
-      res.end(`Bytes recibidos: ${bytesTotales}`);
+      res.end(`Bytes recibidos: ${totalBytes}`);
     });
 
     return
