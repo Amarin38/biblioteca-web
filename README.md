@@ -11,24 +11,24 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 ## Endpoints
 
 ### Libros
-- GET /libros?titulo=&autor=&genero=&page=&size= -> Devuelve un listado de libros, si no se le incluyen filtros devuelve todos los libros.
+- GET /libros?titulo=&autor=&genero=&limit=&offset= -> Devuelve un listado de libros, si no se le incluyen filtros devuelve todos los libros.
 - GET /libros/{isbn} -> Devuelve el detalle del libro concreto.
 - GET /libros/{isbn}/ejemplares -> Ejemplares del libro específico.
 - POST /libros -> Crea un libro
 - POST /libros/{isbn}/ejemplares ->  Crea un ejemplar nuevo de un libro específico.
-- PUT /libros/{isbn} -> Modifica un libro específico.
+- PATCH /libros/{isbn} -> Modifica el nombre de un libro específico.
 - DELETE /libros/{isbn} -> Da de baja un libro específico y lanza un error si tiene ejemplares asociados.
 
 
 ### Ejemplares
-- GET /ejemplares?isbn=&estado=disponible&page=&size= -> Con un query consulta los ejemplares disponibles.
+- GET /ejemplares?estado=disponible=&limit=&offset= -> Con un query consulta los ejemplares disponibles.
 - GET /ejemplares/{codigoBarras} -> Devuelve el detalle del ejemplar concreto.
 - PATCH /ejemplares/{codigoBarras} -> Cambia el estado manualmente.
 - DELETE /ejemplares/{codigoBarras} -> Da de baja el ejemplar y lanza un error si tiene un préstamo activo.
 
 
 ### Usuarios
-- GET /usuarios?nombre=&email=&tipo=&page=&size= -> Devuelve un listado de usuarios.
+- GET /usuarios?nombre=&email=&tipo=&limit=&offset= -> Devuelve un listado de usuarios.
 - GET /usuarios/{idUsuario} -> Devuelve el detalle del usuario en concreto.
 - POST /usuarios -> Da de alta un usuario.
 - PUT /usuarios/{idUsuario} -> Modifica un usuario concreto.
@@ -36,7 +36,7 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 
 
 ### Prestamos
-- GET /prestamos?estado=&idUsuario=&page=&size= -> Devuelve un listado de prestamos.
+- GET /prestamos?estado=&idUsuario=&limit=&offset= -> Devuelve un listado de prestamos.
 - GET /prestamos/{idPrestamo} -> Devuelve el detalle de un préstamo
 - GET /prestamos/{idPrestamo}/multa -> Consultar multa calculada dado el tiempo de atraso.
 - POST /prestamos -> Crea un préstamo y se le tiene que pasar un body con el idUsuario y el codigoBarras.
@@ -50,19 +50,19 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 ### Libros
 | Verbo HTTP | Endpoint | Éxito | Errores |
 |:---:|:---|:---:|:---|
-| `GET` | `/libros?titulo=&autor=&genero=&page=&size=` | `200` OK | `400` query inválida |
+| `GET` | `/libros?titulo=&autor=&genero=&limit=&offset=` | `200` OK | `400` query inválida |
 | `GET` | `/libros/{isbn}` | `200` OK | `404` libro inexistente |
 | `GET` | `/libros/{isbn}/ejemplares` | `200` OK | `404` libro inexistente |
 | `POST` | `/libros` | `201` libro creado | `400` body inválido<br>`409` isbn ya registrado |
 | `POST` | `/libros/{isbn}/ejemplares` | `201` libro creado | `400` body inválido<br>`404` libro inexistente<br>`409` código de barras duplicado |
-| `PUT` | `/libros/{isbn}` | `200` libro actualizado | `400` body inválido<br>`404` libro inexistente |
+| `PATCH` | `/libros/{isbn}` | `200` libro actualizado | `400` body inválido<br>`404` libro inexistente |
 | `DELETE` | `/libros/{isbn}` | `204` libro eliminado | `404` libro inexistente<br>`409` tiene ejemplares asociados |
 
 
 ### Ejemplares
 | Método | Endpoint | Éxito | Errores |
 |:---:|:---|:---:|:---|
-| `GET` | `/ejemplares?isbn=&estado=&page=&size=` | `200` OK | `400` query inválida |
+| `GET` | `/ejemplares?estado=&limit=&offset=` | `200` OK | `400` query inválida |
 | `GET` | `/ejemplares/{codigoBarras}` | `200` OK | `404` ejemplar inexistente |
 | `PATCH` | `/ejemplares/{codigoBarras}` | `200` ejemplar actualizado | `400` body inválido<br>`404` ejemplar inexistente |
 | `DELETE` | `/ejemplares/{codigoBarras}` | `204` ejemplar eliminado | `404` ejemplar inexistente<br>`409` tiene préstamo activo |
@@ -71,7 +71,7 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 ### Usuarios
 | Método | Endpoint | Éxito | Errores |
 |:---:|:---|:---:|:---|
-| `GET` | `/usuarios?nombre=&email=&tipo=&page=&size=` | `200` OK | `400` query inválida |
+| `GET` | `/usuarios?nombre=&email=&tipo=&limit=&offset=` | `200` OK | `400` query inválida |
 | `GET` | `/usuarios/{idUsuario}` | `200` OK | `404` usuario inexistente |
 | `POST` | `/usuarios` | `201` usuario creado | `400` body inválido |
 | `PUT` | `/usuarios/{idUsuario}` | `200` usuario actualizado | `400` body inválido<br>`404` usuario |
@@ -81,7 +81,7 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 ### Préstamos
 | Método | Endpoint | Éxito | Errores |
 |:---:|:---|:---:|:---|
-| `GET` | `/prestamos?estado=&idUsuario=&page=&size=` | `200` OK | `400` query inválida |
+| `GET` | `/prestamos?estado=&idUsuario=&limit=&offset=` | `200` OK | `400` query inválida |
 | `GET` | `/prestamos/{idPrestamo}` | `200` OK | `404` préstamo inexistente |
 | `GET` | `/prestamos/{idPrestamo}/multa` | `200` OK | `404` préstamo inexistente |
 | `POST` | `/prestamos` | `201` préstamo creado | `400` body inválido<br>`404` usuario o ejemplar inexistente<br>`409` ejemplar no disponible<br>`422` usuario con límite alcanzado o multa impaga |
