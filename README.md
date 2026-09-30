@@ -36,7 +36,7 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 
 
 ### Prestamos
-- GET /prestamos?estado=&idUsuario=&limit=&offset= -> Devuelve un listado de prestamos.
+- GET /prestamos?estado=&limit=&offset= -> Devuelve un listado de prestamos.
 - GET /prestamos/{idPrestamo} -> Devuelve el detalle de un préstamo
 - GET /prestamos/{idPrestamo}/multa -> Consultar multa calculada dado el tiempo de atraso.
 - POST /prestamos -> Crea un préstamo y se le tiene que pasar un body con el idUsuario y el codigoBarras.
@@ -73,6 +73,7 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 |:---:|:---|:---:|:---|
 | `GET` | `/usuarios?nombre=&email=&tipo=&limit=&offset=` | `200` OK | `400` query inválida |
 | `GET` | `/usuarios/{idUsuario}` | `200` OK | `404` usuario inexistente |
+| `GET` | `/usuarios/{idUsuario}/prestamos` | `200` OK | `404` usuario inexistente |
 | `POST` | `/usuarios` | `201` usuario creado | `400` body inválido |
 | `PUT` | `/usuarios/{idUsuario}` | `200` usuario actualizado | `400` body inválido<br>`404` usuario |
 | `DELETE` | `/usuarios/{idUsuario}` | `204` usuario eliminado | `404` usuario inexistente<br>`409` tiene préstamos activos |
@@ -81,7 +82,7 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 ### Préstamos
 | Método | Endpoint | Éxito | Errores |
 |:---:|:---|:---:|:---|
-| `GET` | `/prestamos?estado=&idUsuario=&limit=&offset=` | `200` OK | `400` query inválida |
+| `GET` | `/prestamos?estado=&limit=&offset=` | `200` OK | `400` query inválida |
 | `GET` | `/prestamos/{idPrestamo}` | `200` OK | `404` préstamo inexistente |
 | `GET` | `/prestamos/{idPrestamo}/multa` | `200` OK | `404` préstamo inexistente |
 | `POST` | `/prestamos` | `201` préstamo creado | `400` body inválido<br>`404` usuario o ejemplar inexistente<br>`409` ejemplar no disponible<br>`422` usuario con límite alcanzado o multa impaga |
