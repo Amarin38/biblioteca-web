@@ -30,6 +30,7 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 ### Usuarios
 - GET /usuarios?nombre=&email=&tipo=&limit=&offset= -> Devuelve un listado de usuarios.
 - GET /usuarios/{idUsuario} -> Devuelve el detalle del usuario en concreto.
+- GET /usuarios/{idUsuario}/prestamos -> Devuelve el detalle de los prestamos del usuario en concreto.
 - POST /usuarios -> Da de alta un usuario.
 - PUT /usuarios/{idUsuario} -> Modifica un usuario concreto.
 - DELETE /usuarios/{idUsuario} -> Da de baja un usuario.
@@ -41,8 +42,14 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 - GET /prestamos/{idPrestamo}/multa -> Consultar multa calculada dado el tiempo de atraso.
 - POST /prestamos -> Crea un préstamo y se le tiene que pasar un body con el idUsuario y el codigoBarras.
 - POST /prestamos/{idPrestamo}/devolucion -> Finaliza el préstamo.
-- POST /prestamos/{idPrestamo}/multa/pagos -> Registra el pago de la multa.
 - POST /prestamos/{idPrestamo}/renovaciones -> Renovar o extender la fechaDevolucion.
+- PATCH /prestamos/{idPrestamo} -> Cambia el estado manualmente.
+- DELETE /prestamos/{idPrestamo} -> Da de baja un préstamo.
+
+
+### Pagos de multa
+- GET /prestamos/{idPrestamo}/multa/pagos -> Devuelve los pagos registrados de la multa de un préstamo.
+- POST /prestamos/{idPrestamo}/multa/pagos -> Registra un pago parcial o total de la multa. Se le pasa un body con el monto.
 
 
 ## Status Codes
@@ -87,5 +94,13 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 | `GET` | `/prestamos/{idPrestamo}/multa` | `200` OK | `404` préstamo inexistente |
 | `POST` | `/prestamos` | `201` préstamo creado | `400` body inválido<br>`404` usuario o ejemplar inexistente<br>`409` ejemplar no disponible<br>`422` usuario con límite alcanzado o multa impaga |
 | `POST` | `/prestamos/{idPrestamo}/devolucion` | `200` préstamo finalizado | `404` préstamo inexistente<br>`409` préstamo ya finalizado |
-| `POST` | `/prestamos/{idPrestamo}/multa/pagos` | `201` multa pagada | `400` body inválido<br>`404` préstamo inexistente<br>`409` sin multa pendiente o ya pagada |
 | `POST` | `/prestamos/{idPrestamo}/renovaciones` | `201` préstamo renovado | `404` préstamo inexistente<br>`409` préstamo finalizado<br>`422` máximo de renovaciones alcanzado o préstamo vencido |
+| `PATCH` | `/prestamos/{idPrestamo}` | `200` ejemplar actualizado | `400` body inválido<br>`404` ejemplar inexistente |
+| `DELETE` | `/prestamos/{idPrestamo}` | `204` ejemplar eliminado | `404` ejemplar inexistente<br>`409` tiene préstamo activo |
+
+
+### Pagos de multa
+| Método | Endpoint | Éxito | Errores |
+|:---:|:---|:---:|:---|
+| `GET` | `/prestamos/{idPrestamo}/multa/pagos` | `200` OK | `404` préstamo inexistente |
+| `POST` | `/prestamos/{idPrestamo}/multa/pagos` | `201` pago registrado | `400` body inválido o monto mayor al saldo<br>`404` préstamo inexistente<br>`409` sin multa pendiente |
