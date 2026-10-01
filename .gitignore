@@ -28,6 +28,8 @@ pnpm-debug.log*
 coverage/
 .nyc_output/
 
+todolist.txt
+
 # Base de datos local
 *.sqlite
 *.sqlite3

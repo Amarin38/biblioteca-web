@@ -41,7 +41,7 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 - GET /prestamos/{idPrestamo} -> Devuelve el detalle de un préstamo
 - GET /prestamos/{idPrestamo}/multa -> Consultar multa calculada dado el tiempo de atraso.
 - POST /prestamos -> Crea un préstamo y se le tiene que pasar un body con el idUsuario y el codigoBarras.
-- POST /prestamos/{idPrestamo}/devolucion -> Finaliza el préstamo.
+- POST /prestamos/{idPrestamo}/devolucion -> Finaliza el préstamo. 
 - POST /prestamos/{idPrestamo}/renovaciones -> Renovar o extender la fechaDevolucion.
 - PATCH /prestamos/{idPrestamo} -> Cambia el estado manualmente.
 - DELETE /prestamos/{idPrestamo} -> Da de baja un préstamo.
@@ -61,7 +61,7 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 | `GET` | `/libros/{isbn}` | `200` OK | `404` libro inexistente |
 | `GET` | `/libros/{isbn}/ejemplares` | `200` OK | `404` libro inexistente |
 | `POST` | `/libros` | `201` libro creado | `400` body inválido<br>`409` isbn ya registrado |
-| `POST` | `/libros/{isbn}/ejemplares` | `201` libro creado | `400` body inválido<br>`404` libro inexistente<br>`409` código de barras duplicado |
+| `POST` | `/libros/{isbn}/ejemplares` | `201` ejemplar creado | `400` body inválido<br>`404` libro inexistente<br>`409` código de barras duplicado |
 | `PATCH` | `/libros/{isbn}` | `200` libro actualizado | `400` body inválido<br>`404` libro inexistente |
 | `DELETE` | `/libros/{isbn}` | `204` libro eliminado | `404` libro inexistente<br>`409` tiene ejemplares asociados |
 
@@ -82,8 +82,8 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 | `GET` | `/usuarios/{idUsuario}` | `200` OK | `404` usuario inexistente |
 | `GET` | `/usuarios/{idUsuario}/prestamos` | `200` OK | `404` usuario inexistente |
 | `POST` | `/usuarios` | `201` usuario creado | `400` body inválido |
-| `PUT` | `/usuarios/{idUsuario}` | `200` usuario actualizado | `400` body inválido<br>`404` usuario |
-| `DELETE` | `/usuarios/{idUsuario}` | `204` usuario eliminado | `404` usuario inexistente<br>`409` tiene préstamos activos |
+| `PUT` | `/usuarios/{idUsuario}` | `200` usuario actualizado | `400` body inválido<br>`404` Usuario inexistente |
+| `DELETE` | `/usuarios/{idUsuario}` | `204` usuario eliminado | `404` Usuario inexistente<br>`409` tiene préstamos activos |
 
 
 ### Préstamos
@@ -95,8 +95,8 @@ El modelo distingue entre el **libro** como obra (identificado por su isbn) y el
 | `POST` | `/prestamos` | `201` préstamo creado | `400` body inválido<br>`404` usuario o ejemplar inexistente<br>`409` ejemplar no disponible<br>`422` usuario con límite alcanzado o multa impaga |
 | `POST` | `/prestamos/{idPrestamo}/devolucion` | `200` préstamo finalizado | `404` préstamo inexistente<br>`409` préstamo ya finalizado |
 | `POST` | `/prestamos/{idPrestamo}/renovaciones` | `201` préstamo renovado | `404` préstamo inexistente<br>`409` préstamo finalizado<br>`422` máximo de renovaciones alcanzado o préstamo vencido |
-| `PATCH` | `/prestamos/{idPrestamo}` | `200` ejemplar actualizado | `400` body inválido<br>`404` ejemplar inexistente |
-| `DELETE` | `/prestamos/{idPrestamo}` | `204` ejemplar eliminado | `404` ejemplar inexistente<br>`409` tiene préstamo activo |
+| `PATCH` | `/prestamos/{idPrestamo}` | `200` préstamo actualizado | `400` body inválido<br>`404` préstamo inexistente |
+| `DELETE` | `/prestamos/{idPrestamo}` | `204` préstamo eliminado | `404` préstamo inexistente<br>`409` tiene préstamo activo |
 
 
 ### Pagos de multa
