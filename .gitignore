@@ -30,11 +30,6 @@ coverage/
 
 todolist.txt
 
-# Base de datos local
-*.sqlite
-*.sqlite3
-*.db
-
 # Uploads / archivos generados en runtime
 uploads/
 tmp/
@@ -52,4 +47,10 @@ tmp/
 
 # Sistema operativo
 .DS_Store
-Thumbs.db
+.env
+
+
+*.sh
+*.py
+data/*.db-wal
+data/*.db-shm
