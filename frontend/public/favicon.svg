@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a3d52"/>
+      <stop offset="1" stop-color="#16202b"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b08d5f"/>
+      <stop offset="1" stop-color="#7a5a38"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+
+  <g>
+    <rect x="8" y="24" width="10" height="30" rx="1.2" fill="#3f7a63"/>
+    <rect x="8" y="24" width="10" height="3" rx="1.2" fill="#fff" opacity=".22"/>
+    <rect x="8" y="31" width="10" height="1.2" fill="#e8c98a"/>
+    <rect x="8" y="34" width="10" height="1.2" fill="#e8c98a"/>
+    <rect x="10.5" y="39" width="5" height="7" rx=".8" fill="#f3e9d2" opacity=".9"/>
+    <rect x="16" y="24" width="2" height="30" fill="#000" opacity=".15"/>
+  </g>
+
+  <g>
+    <rect x="19.5" y="14" width="11" height="40" rx="1.2" fill="#4a6fa5"/>
+    <rect x="19.5" y="14" width="11" height="3" rx="1.2" fill="#fff" opacity=".22"/>
+    <rect x="19.5" y="21" width="11" height="1.2" fill="#e8c98a"/>
+    <rect x="19.5" y="24" width="11" height="1.2" fill="#e8c98a"/>
+    <rect x="22" y="29" width="6" height="10" rx=".8" fill="#f3e9d2" opacity=".9"/>
+    <rect x="19.5" y="46" width="11" height="1.2" fill="#e8c98a"/>
+    <rect x="28.5" y="14" width="2" height="40" fill="#000" opacity=".15"/>
+  </g>
+
+  <g>
+    <rect x="32" y="26" width="9" height="28" rx="1.2" fill="#c9923a"/>
+    <rect x="32" y="26" width="9" height="3" rx="1.2" fill="#fff" opacity=".25"/>
+    <rect x="32" y="33" width="9" height="1.2" fill="#fff" opacity=".55"/>
+    <circle cx="36.5" cy="40" r="2.2" fill="#f3e9d2" opacity=".9"/>
+    <rect x="32" y="47" width="9" height="1.2" fill="#fff" opacity=".55"/>
+    <rect x="39" y="26" width="2" height="28" fill="#000" opacity=".15"/>
+  </g>
+
+  <g transform="rotate(10 43 54)">
+    <rect x="43" y="16" width="9" height="38" rx="1.2" fill="#a3303f"/>
+    <rect x="43" y="16" width="9" height="3" rx="1.2" fill="#fff" opacity=".22"/>
+    <rect x="43" y="23" width="9" height="1.2" fill="#e8c98a"/>
+    <rect x="43" y="26" width="9" height="1.2" fill="#e8c98a"/>
+    <rect x="45" y="31" width="5" height="8" rx=".8" fill="#f3e9d2" opacity=".9"/>
+    <rect x="50" y="16" width="2" height="38" fill="#000" opacity=".15"/>
+  </g>
+
+  <rect x="4" y="54" width="56" height="5" rx="1.5" fill="url(#wood)"/>
+  <rect x="4" y="54" width="56" height="1.2" rx=".6" fill="#d7b88a" opacity=".7"/>
+  <rect x="6" y="59" width="52" height="2" rx="1" fill="#000" opacity=".25"/>
+</svg>
